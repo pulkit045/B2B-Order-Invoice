@@ -1,0 +1,34 @@
+GET http://localhost:8000
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzUxODI5ODMsImV4cCI6MTY3NjA0Njk4MywiYXVkIjoiNjNkOTQxYjg4N2Q4ZTJiMmNlZjkzMWIwIn0.IPBrAc4-wgZ-WcTbED21N8f_W4_-STPoTZx7wU4qSKo
+
+### Login
+POST http://localhost:8000/api/auth/register
+Content-Type: application/json
+
+{
+    "email": "shivam1@gmail.com",
+    "password": "123456"
+}
+
+### Register
+POST http://localhost:8000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "shivam1@gmail.com",
+    "password": "123456"
+}
+
+###
+POST  http://localhost:8000/api/yoga-form
+Content-Type: application/json
+
+{   
+    "username": "shivam1",
+    "name": "shivam",
+    "phone": "1234567899",
+    "age": "19",
+    "batch": "2"
+}
+
+
