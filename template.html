@@ -1,18 +1,168 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Hello world!</title>
-  </head>
-  <body>
-    <h1>User List</h1>
-    <ul>
-      {{#each itemCount}}
-      <li>id: {{this.id}}</li>
-      <li>quantity: {{this.quantity}}</li>
-      <li>quantity: {{this.itemId.NAME}}</li>
-      <br />
-      {{/each}}
-    </ul>
-  </body>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Document</title>
+    <style>
+        table , th , td {
+            border : 1px solid black;
+            border-collapse:collapse ;
+        }
+        td{
+            text-align: center;
+        }
+        #ser_no{
+            width : 5%;
+        }
+        #items_desc{
+            width : 25%;
+        }
+        #hsn_sac{
+            width : 8%;
+        }
+        #qty{
+            width : 8%;
+        }
+        #rate{
+            width : 8%;
+        }
+        #discount{
+            width : 8%;
+        }
+        #cgst{
+            width : 20%;
+        }
+        #sgst{
+            width : 20%;
+        }
+        #amount{
+            width : 8%;
+        }
+        #cgst_id{
+            width : 10%;
+        }
+        
+        #sgst_id{
+            width : 10%;
+        }
+        
+        #cgst_amt{
+            width : 10%;
+        }
+        
+        #sgst_amt{
+            width : 10%;
+        }
+        .totaling{
+            display: flex;
+            flex-direction: row;
+        }
+        #total{
+            display : flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width : 50%;
+        }
+    </style>
+</head>
+<body>
+    <div style = "width : 100%; display : flex; flex-direction : row; height : 200px; border : 3px solid black;">
+        <div class = "image-container" style = "width : 30%;"></div>
+        <div style = "width : 40%; display : flex; flex-direction: column; justify-content: flex-end; align-items: center;">
+            <h3>Depo Solutions Private Limited</h3>
+            <div>
+                <p>77/1/A, Christopher Road , Topsia ,<br> Kolkata - 700046 <br> West Bengal <br> GSTIN : 19AAJCD105BP1Z4</p>
+            </div>
+        </div>
+        <div style = "display : flex; flex-direction: column; justify-content: flex-end; align-items: center;">
+            <h1>Profoma Inovice</h1>
+        </div>
+    </div>
+    <div style = "display : flex; flex-wrap:wrap; flex-direction: row; margin : 10px auto;">
+        <div style = "width : 48%; border :3px solid black; border-bottom : none;">
+            <div style = "display : flex; flex-direction: row; justify-content: space-between; margin-right : 20px; margin-left : 10px">
+                <span>#</span>
+                <b><span>: DEPO/KOL/000007</span></b>
+            </div>
+            <div style = "display : flex; flex-direction: row; justify-content: space-between; margin-right: 20px; margin-left : 10px;">
+                <span>Estimate Date</span>
+                <b><span>: 30/01/2023</span></b>
+            </div>
+        </div>
+        <div style = "width: 48%;  border-top : 3px solid black ;border-right : 3px solid black;">
+            <div style ="display : flex; flex-direction: row; justify-content: space-between; margin-left: 20px;">
+                <div>Place of Supply</div>
+                <div><b>: West Bengal(19)</b></div>
+            </div>
+        </div>
+        <div style = "width : 48%; border :3px solid black; background-color: ghostwhite;"><b>Bill To</b></div>
+        <div style = "width : 48%; border : 3px solid black; border-left: none; background-color: ghostwhite;"><b>Ship To</b></div>
+        <div style = "width : 48%; border : 3px solid black; border-top : none;">
+            <h3>Depo Solutions Private Limited</h3>
+            <div>
+                <p>77/1/A, Christopher Road , Topsia ,<br> Kolkata - 700046 <br> West Bengal <br> GSTIN : 19AAJCD105BP1Z4</p>
+            </div>
+        </div>
+        <div style = "width : 48%; border-right: 3px solid black; border-bottom: 3px solid black;">
+            <div>
+                <p>Depo Solutions Private Limited <br> 77/1/A, Christopher Road , Topsia ,<br> Kolkata - 700046 <br> West Bengal <br> GSTIN : 19AAJCD105BP1Z4</p>
+            </div>
+        </div>
+    </div>
+
+    <table>
+        <tr>
+            <th id = "ser_no" rowspan = "2">#</th>
+            <th id = "items_desc" rowspan="2">Items & Description</th>
+            <th id = "hsn_sac" rowspan="2">HSN/SAC</th>
+            <th id = "qty" rowspan="2">Qty</th>
+            <th id = "rate" rowspan="2">Rate</th>
+            <th id = "discount" rowspan="2">Discount</th>
+            <th id = "cgst" colspan="2">CGST</th>
+            <th id = "sgst" colspan="2">SGST</th>
+            <th id = "amount" rowspan="2">Amount</th>
+        </tr>
+        <tr>
+            <th id = "cgst_id">%</th>
+            <th id = "cgst_amt">Amt</th>
+            
+            <th id = "sgst_id">%</th>
+            <th id = "sgst_amt">Amt</th>
+        </tr>
+        {{#each items}}
+            <tr>
+                <td>{{this.sno}}</td>
+                <td>{{this.itemId.NAME}}</td>
+                <td>{{this.itemId.HSN_CODE}}</td>
+                <td>{{this.quantity}}</td>
+                <td>{{this.itemId.MRP}}</td>
+                <td>{{this.discount}}</td>
+                <td>{{this.cgst}}</td>
+                <td>{{this.cgstAmount}}</td>
+                <td>{{this.sgst}}</td>
+                <td>{{this.sgstAmount}}</td>
+                <td>{{this.amount}}</td>
+            </tr>        
+        {{/each}}
+    </table>
+    <div class = "toataling">
+        <div style = "width : 50%">{{totalInWords}}</div>
+        <div id = "total">
+            <ul type = "none">
+                <li><span>Sub Total</span>
+                    <span>{{subTotal}}</span>
+                </li>
+                <li><span>CGST9</span>
+                    <span>{{cgstTotal}}</span>
+                </li>
+                <li><span>SGST9</span>
+                    <span>{{sgstTotal}}</span>
+                </li>
+                <li><span>Total</span>
+                    <span>{{total}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
 </html>

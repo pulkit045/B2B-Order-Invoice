@@ -4,15 +4,15 @@ const cors = require("cors");
 const createError = require("http-errors");
 require("dotenv").config();
 require("./helpers/init_mongodb");
-const { verifyAccessToken } = require("./helpers/jwt_helper");
-
 const pdf = require("pdf-creator-node");
 const fs = require("fs");
 const html = fs.readFileSync("template.html", "utf8");
 const path = require("path");
 
+const { verifyAccessToken } = require("./helpers/jwt_helper");
 const AuthRoute = require("./Routes/Auth.route");
 const OrderRoute = require("./Routes/Order.route");
+const pdfCalculation = require('./helpers/pdf_calculation')
 
 const app = express();
 app.use(cors());
@@ -33,8 +33,9 @@ app.get(async (req, res, next) => {
 
 app.get("/api/orders/invoice",verifyAccessToken, async (req, res, next) => {
   try {
-    const { orderId, itemCount } = req.body;
-    console.log(itemCount)
+    const { _id: orderId, itemCount } = req.body;
+    console.log(orderId)
+    const { items, subTotal, cgstTotal, sgstTotal, total, totalInWords} = pdfCalculation(itemCount)
     const options = {
       format: "A4",
       orientation: "portrait",
@@ -43,7 +44,7 @@ app.get("/api/orders/invoice",verifyAccessToken, async (req, res, next) => {
     const document = {
       html: html,
       data: {
-        itemCount: itemCount,
+        items, subTotal, cgstTotal, sgstTotal, total, totalInWords
       },
       path: `./downloaded_pdf/${orderId}.pdf`,
       type: "",
