@@ -2,11 +2,22 @@ const express = require('express')
 const router = express.Router()
 const createError = require('http-errors')
 
+const {itemSchema} = require('../helpers/validation_schema')
 const Item = require('../models/Items.model')
 const { verifyAccessToken } = require('../helpers/jwt_helper')
 const Order = require('../models/Orders.model')
 const UserOrder = require('../models/UserOrders.model')
 
+
+router.get('/get-items', async (req,res,next)=>{
+    try {
+        const items = await Item.find({})
+        res.json(items)
+    }   
+    catch (error) {
+        next(error)    
+    }
+})
 
 router.post('/make-order', verifyAccessToken,  async(req,res,next)=>{
     try {
@@ -15,12 +26,11 @@ router.post('/make-order', verifyAccessToken,  async(req,res,next)=>{
         const newOrder = await order.save();
 
         const user = await UserOrder.findOne({userID})
-        console.log(user)
         if(user){
             await UserOrder.updateOne({userID}, {$push: {orders: newOrder.id}})
         }
         else{
-            const userOrder = new UserOrder({userID, orders: [newOrder.id]})
+            const userOrder = new UserOrder({userID, orders: [newOrder.id]})    
             const newUserOrder = await userOrder.save()
         }
 
@@ -49,16 +59,16 @@ router.get('/user-orders', verifyAccessToken, async (req, res, next)=>{
 })
 
 
-// router.post('/add-item', async (req, res, next)=>{
-//     try {
-//         const result = await itemSchema.validateAsync(req.body)
-//         const item = new Item(result)
-//         const savedItem = await item.save()
-//         res.status(200).send('Item added succefully')
-//     } catch (error) {
-//         next(error)
-//     }
-// })
+router.post('/add-item', async (req, res, next)=>{
+    try {
+        const result = await itemSchema.validateAsync(req.body)
+        const item = new Item(result)
+        const savedItem = await item.save()
+        res.status(200).send('Item added succefully')
+    } catch (error) {
+        next(error)
+    }
+})
 
 // const response = []
 // for(order of orders){

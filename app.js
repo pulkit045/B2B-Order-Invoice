@@ -18,11 +18,11 @@ const app = express();
 app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "./build")));
 
-app.get("/", verifyAccessToken, async (req, res, next) => {
-  console.log(req.payload);
-  res.send("Hello  from express.");
-});
+app.get(/^(?!\/api).+/, (req,res)=>{
+  res.sendFile(path.join(__dirname, './build/index.html'));
+})
 
 app.use("/api/auth", AuthRoute);
 app.use("/api/orders", OrderRoute);
@@ -31,10 +31,9 @@ app.get(async (req, res, next) => {
   next(createError.NotFound());
 });
 
-app.get("/api/orders/invoice",verifyAccessToken, async (req, res, next) => {
+app.post("/api/orders/invoice",verifyAccessToken, async (req, res, next) => {
   try {
     const { _id: orderId, itemCount } = req.body;
-    console.log(orderId)
     const { items, subTotal, cgstTotal, sgstTotal, total, totalInWords} = pdfCalculation(itemCount)
     const options = {
       format: "A4",

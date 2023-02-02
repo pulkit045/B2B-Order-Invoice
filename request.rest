@@ -1,38 +1,41 @@
 GET http://localhost:8000
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzUxODI5ODMsImV4cCI6MTY3NjA0Njk4MywiYXVkIjoiNjNkOTQxYjg4N2Q4ZTJiMmNlZjkzMWIwIn0.IPBrAc4-wgZ-WcTbED21N8f_W4_-STPoTZx7wU4qSKo
 
-### Login
+### Register
 POST http://localhost:8000/api/auth/register
 Content-Type: application/json
 
 {
-    "email": "shivam1@gmail.com",
+    "email": "shivam2@gmail.com",
     "password": "123456"
 }
 
-### Register
+### Login
 POST http://localhost:8000/api/auth/login
 Content-Type: application/json
 
 {
-    "email": "shivam1@gmail.com",
+    "email": "shivam2@gmail.com",
     "password": "123456"
 }
+
+### GET Items
+GET http://localhost:8000/api/orders/get-items
 
 ### Make Order
 POST http://localhost:8000/api/orders/make-order
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzUxODI5ODMsImV4cCI6MTY3NjA0Njk4MywiYXVkIjoiNjNkOTQxYjg4N2Q4ZTJiMmNlZjkzMWIwIn0.IPBrAc4-wgZ-WcTbED21N8f_W4_-STPoTZx7wU4qSKo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzUzMjIxOTksImV4cCI6MTY3NjE4NjE5OSwiYXVkIjoiNjNkYjYxYjhmZjBmNWU1MGQxMmI0NzZkIn0.xqy6lphBYsz4k12pyoFhWzBK-1AaYT2wm8RAe_SnApY
 
 {
     "itemCount": [
         {
-            "itemId": "63d9692420ee19f476c6aa1e",
-            "quantity": "4"
+            "itemId": "63d969ba20ee19f476c6aa24",
+            "quantity": "6"
         },
         {
             "itemId": "63d9695920ee19f476c6aa20",
-            "quantity": "1"
+            "quantity": "3"
         }
     ] 
 }
@@ -50,15 +53,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzUxODI5O
     "orderId": "63da2d1fa0e7736226a1c547"
 }
 
-# ### Items
-# POST http://localhost:8000/api/orders/add-item
-# Content-Type: application/json
+### Items
+POST http://localhost:8000/api/orders/add-item
+Content-Type: application/json
 
-# {
-#     "DSIN": "MAG-100141.00",
-#     "NAME": "Magmus 3' S.S. Butt Door Hinges - Welded Soft Movement Matt 3' x 16",
-#     "MRP": "51",
-#     "HSN_CODE": "83021010",
-#     "GST": "18.0"
-# }
+{
+    "DSIN": "MAG-100141.00",
+    "NAME": "Magmus 3' S.S. Butt Door Hinges - Welded Soft Movement Matt 3' x 16",
+    "MRP": "51",
+    "HSN_CODE": "83021010",
+    "GST": "18.0"
+}
 

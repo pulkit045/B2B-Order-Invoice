@@ -2,7 +2,7 @@ const numberToWord = require('./number_to_word')
 module.exports = (items) => {
     let subTotal=0, cgstTotal=0, sgstTotal=0, total=0, totalInWords, i=1
     for(item of items){
-        let discount = Math.random()*50
+        let discount = Math.floor(Math.random()*50)
         let cgst = item.itemId.GST/2
         let sgst = item.itemId.GST/2
 

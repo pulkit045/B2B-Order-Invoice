@@ -32,7 +32,6 @@ router.post('/login', async (req,res,next)=>{
         if(!user) throw createError.NotFound('User not registered')
 
         const isMatch = await user.isValidPassword(result.password)
-        console.log(isMatch)
         if(!isMatch) throw createError.Unauthorized('Username/Password not valid')
 
         const accessToken = await signAccessToken(user.id)
