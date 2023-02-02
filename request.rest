@@ -1,8 +1,8 @@
-GET http://localhost:8000
+GET https://b2b-order-invoice.onrender.com/
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzUxODI5ODMsImV4cCI6MTY3NjA0Njk4MywiYXVkIjoiNjNkOTQxYjg4N2Q4ZTJiMmNlZjkzMWIwIn0.IPBrAc4-wgZ-WcTbED21N8f_W4_-STPoTZx7wU4qSKo
 
 ### Register
-POST http://localhost:8000/api/auth/register
+POST https://b2b-order-invoice.onrender.com//api/auth/register
 Content-Type: application/json
 
 {
@@ -11,7 +11,7 @@ Content-Type: application/json
 }
 
 ### Login
-POST http://localhost:8000/api/auth/login
+POST https://b2b-order-invoice.onrender.com//api/auth/login
 Content-Type: application/json
 
 {
@@ -20,10 +20,10 @@ Content-Type: application/json
 }
 
 ### GET Items
-GET http://localhost:8000/api/orders/get-items
+GET https://b2b-order-invoice.onrender.com//api/orders/get-items
 
 ### Make Order
-POST http://localhost:8000/api/orders/make-order
+POST https://b2b-order-invoice.onrender.com//api/orders/make-order
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzUzMjIxOTksImV4cCI6MTY3NjE4NjE5OSwiYXVkIjoiNjNkYjYxYjhmZjBmNWU1MGQxMmI0NzZkIn0.xqy6lphBYsz4k12pyoFhWzBK-1AaYT2wm8RAe_SnApY
 
@@ -41,12 +41,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzUzMjIxO
 }
 
 ### User Orders
-GET http://localhost:8000/api/orders/user-orders
+GET https://b2b-order-invoice.onrender.com//api/orders/user-orders
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzUxODI5ODMsImV4cCI6MTY3NjA0Njk4MywiYXVkIjoiNjNkOTQxYjg4N2Q4ZTJiMmNlZjkzMWIwIn0.IPBrAc4-wgZ-WcTbED21N8f_W4_-STPoTZx7wU4qSKo
 
 
 ### GET Reciept
-GET http://localhost:8000/api/orders/invoice
+GET https://b2b-order-invoice.onrender.com//api/orders/invoice
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzUxODI5ODMsImV4cCI6MTY3NjA0Njk4MywiYXVkIjoiNjNkOTQxYjg4N2Q4ZTJiMmNlZjkzMWIwIn0.IPBrAc4-wgZ-WcTbED21N8f_W4_-STPoTZx7wU4qSKo
 
 {
@@ -54,7 +54,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzUxODI5O
 }
 
 ### Items
-POST http://localhost:8000/api/orders/add-item
+POST https://b2b-order-invoice.onrender.com//api/orders/add-item
 Content-Type: application/json
 
 {
