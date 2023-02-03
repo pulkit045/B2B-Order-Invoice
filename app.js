@@ -45,7 +45,7 @@ app.post("/api/orders/invoice",verifyAccessToken, async (req, res, next) => {
       data: {
         items, subTotal, cgstTotal, sgstTotal, total, totalInWords
       },
-      path: `./downloaded_pdf/invoice.pdf`,
+      path: `${path.join(__dirname,'./downloaded_pdf/invoice.pdf')}`,
       type: "",
     };
 
@@ -53,7 +53,7 @@ app.post("/api/orders/invoice",verifyAccessToken, async (req, res, next) => {
     const option = {
       root: path.join(__dirname),
     };
-    const fileName = `/downloaded_pdf/invoice.pdf`;
+    const fileName = `${path.join(__dirname,'./downloaded_pdf/invoice.pdf')}`;
     res.sendFile(fileName, option, function (err) {
       if (err) {
         next(err);
