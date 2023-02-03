@@ -20,9 +20,9 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "./build")));
 
-app.get(/^(?!\/api).+/, (req,res)=>{
-  res.sendFile(path.join(__dirname, './build/index.html'));
-})
+// app.get(/^(?!\/api).+/, (req,res)=>{
+//   res.sendFile(path.join(__dirname, './build/index.html'));
+// })
 
 app.use("/api/auth", AuthRoute);
 app.use("/api/orders", OrderRoute);
@@ -45,7 +45,7 @@ app.post("/api/orders/invoice",verifyAccessToken, async (req, res, next) => {
       data: {
         items, subTotal, cgstTotal, sgstTotal, total, totalInWords
       },
-      path: `./downloaded_pdf/${orderId}.pdf`,
+      path: `./downloaded_pdf/invoice.pdf`,
       type: "",
     };
 
@@ -53,7 +53,7 @@ app.post("/api/orders/invoice",verifyAccessToken, async (req, res, next) => {
     const option = {
       root: path.join(__dirname),
     };
-    const fileName = `/downloaded_pdf/${orderId}.pdf`;
+    const fileName = `/downloaded_pdf/invoice.pdf`;
     res.sendFile(fileName, option, function (err) {
       if (err) {
         next(err);
