@@ -44,7 +44,7 @@ router.post('/make-order', verifyAccessToken,  async(req,res,next)=>{
 router.get('/user-orders', verifyAccessToken, async (req, res, next)=>{
     try {
         const { aud: userID } = req.payload
-        const { orders } = await UserOrder.findOne({userID}).populate({
+        const {orders} = await UserOrder.findOne({userID}).populate({
             path: 'orders',
             populate: {
                 path: 'itemCount.itemId',
