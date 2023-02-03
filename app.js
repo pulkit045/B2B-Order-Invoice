@@ -36,6 +36,11 @@ app.post("/api/orders/invoice",verifyAccessToken, async (req, res, next) => {
     const { _id: orderId, itemCount } = req.body;
     const { items, subTotal, cgstTotal, sgstTotal, total, totalInWords} = pdfCalculation(itemCount)
     const options = {
+      childProcessOptions: {
+        env: {
+          OPENSSL_CONF: '/dev/null',
+        },
+      },
       format: "A4",
       orientation: "portrait",
       border: "10mm",
